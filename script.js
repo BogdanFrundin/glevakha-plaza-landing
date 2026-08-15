@@ -1,6 +1,32 @@
 const form = document.querySelector('.lead-form');
 const status = document.querySelector('.form-status');
 
+const navToggle = document.querySelector('.nav-toggle');
+const mobileNav = document.querySelector('.mobile-nav');
+
+if (navToggle && mobileNav) {
+  const closeNav = () => {
+    mobileNav.classList.remove('open');
+    navToggle.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('nav-open');
+  };
+
+  const toggleNav = () => {
+    const isOpen = mobileNav.classList.toggle('open');
+    navToggle.classList.toggle('open', isOpen);
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+    document.body.classList.toggle('nav-open', isOpen);
+  };
+
+  navToggle.addEventListener('click', toggleNav);
+  mobileNav.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeNav));
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeNav();
+  });
+}
+
 const revealItems = document.querySelectorAll('.reveal');
 
 const revealObserver = new IntersectionObserver(

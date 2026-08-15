@@ -154,6 +154,57 @@ textarea {
   transform: scaleX(1);
 }
 
+.nav-toggle {
+  display: none;
+  position: relative;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  position: absolute;
+  left: 10px;
+  width: 24px;
+  height: 2px;
+  background: var(--white);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease, top 0.25s ease;
+}
+
+.nav-toggle span:nth-child(1) {
+  top: 15px;
+}
+
+.nav-toggle span:nth-child(2) {
+  top: 22px;
+}
+
+.nav-toggle span:nth-child(3) {
+  top: 29px;
+}
+
+.nav-toggle.open span:nth-child(1) {
+  top: 22px;
+  transform: rotate(45deg);
+}
+
+.nav-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.open span:nth-child(3) {
+  top: 22px;
+  transform: rotate(-45deg);
+}
+
+.mobile-nav {
+  display: none;
+}
+
 .button {
   display: inline-flex;
   align-items: center;
@@ -399,8 +450,13 @@ textarea {
   place-items: center;
   border-radius: 18px;
   background: var(--gold-soft);
-  font-size: 1.8rem;
+  color: var(--gold);
   margin-bottom: 18px;
+}
+
+.icon-wrap svg {
+  width: 28px;
+  height: 28px;
 }
 
 .adv-card h3 {
@@ -681,20 +737,102 @@ tr:last-child td {
     display: none;
   }
 
+  .nav-toggle {
+    display: block;
+  }
+
+  .mobile-nav {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    background: rgba(13, 12, 11, 0.98);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    transition: max-height 0.3s ease, opacity 0.25s ease;
+  }
+
+  .mobile-nav-inner {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 0 20px;
+  }
+
+  .mobile-nav a {
+    padding: 14px 4px;
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 1.02rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .mobile-nav .button {
+    margin: 16px 4px 0;
+    width: auto;
+  }
+
+  .mobile-nav.open {
+    max-height: 480px;
+    opacity: 1;
+  }
+
+  body.nav-open {
+    overflow: hidden;
+  }
+
   .section {
-    padding: 84px 0;
+    padding: 72px 0;
+  }
+
+  .section-heading h2 {
+    font-size: clamp(1.9rem, 7.5vw, 2.5rem);
   }
 
   .hero {
-    padding-top: 64px;
+    padding: 44px 0 56px;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(2.4rem, 9vw, 3.4rem);
+  }
+
+  .hero-card-list {
+    display: none;
+  }
+
+  .hero-card {
+    padding: 22px 20px 18px;
+  }
+
+  .mini-grid strong {
+    font-size: 1.02rem;
   }
 
   .hero-metrics {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 28px;
+  }
+
+  .hero-metrics li {
+    padding: 12px 8px;
+    border-radius: 14px;
+    text-align: center;
+  }
+
+  .hero-metrics strong {
+    font-size: 1.3rem;
+  }
+
+  .hero-metrics span {
+    font-size: 0.72rem;
+    line-height: 1.3;
   }
 
   .advantages-grid {
     grid-template-columns: 1fr;
+  }
+
+  .adv-card {
+    padding: 22px 20px;
   }
 
   .tenants-grid {
