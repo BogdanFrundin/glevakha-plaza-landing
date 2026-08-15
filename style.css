@@ -206,6 +206,10 @@ textarea {
   display: none;
 }
 
+.phone-bar {
+  display: none;
+}
+
 .button {
   display: inline-flex;
   align-items: center;
@@ -785,8 +789,33 @@ tr:last-child td {
     overflow: hidden;
   }
 
+  .phone-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 12px;
+    background: #1a1a1a;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .phone-bar a {
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 15px;
+    white-space: nowrap;
+  }
+
+  .phone-bar span {
+    color: rgba(255, 255, 255, 0.3);
+  }
+
   .section {
-    padding: 72px 0;
+    padding: 46px 0;
+  }
+
+  .section-heading {
+    margin-bottom: 28px;
   }
 
   .section-heading h2 {
@@ -794,7 +823,11 @@ tr:last-child td {
   }
 
   .hero {
-    padding: 40px 0 48px;
+    padding: 32px 0 36px;
+  }
+
+  .hero-grid {
+    gap: 32px;
   }
 
   .hero-copy h1 {
@@ -831,7 +864,7 @@ tr:last-child td {
   .hero-metrics {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
-    margin-top: 28px;
+    margin-top: 20px;
   }
 
   .hero-metrics li:nth-child(3) {
@@ -854,14 +887,108 @@ tr:last-child td {
 
   .advantages-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .adv-card {
-    padding: 22px 20px;
+    padding: 18px 16px;
+  }
+
+  .icon-wrap {
+    margin-bottom: 12px;
   }
 
   .tenants-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .space-grid {
+    gap: 16px;
+  }
+
+  .building-card {
+    padding: 20px 16px;
+  }
+
+  .building-header {
+    margin-bottom: 16px;
+  }
+
+  .stats-row {
+    margin-bottom: 16px;
+  }
+
+  table {
+    background: transparent;
+    border-radius: 0;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tbody,
+  tr,
+  td {
+    display: block;
+  }
+
+  tr {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    align-items: center;
+    column-gap: 12px;
+    row-gap: 2px;
+    padding: 13px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  td {
+    padding: 0;
+    border: none;
+    font-size: 0.92rem;
+  }
+
+  td::before {
+    display: none;
+  }
+
+  td[data-label="Формат"] {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-self: center;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--white);
+  }
+
+  td[data-label="Площа"] {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: right;
+    white-space: nowrap;
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  td[data-label="Ціна"] {
+    grid-column: 2;
+    grid-row: 2;
+    text-align: right;
+    white-space: nowrap;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .lead-form {
+    padding: 22px 18px;
+  }
+
+  .lead-form label {
+    margin-bottom: 14px;
   }
 
   .footer-inner {
@@ -879,39 +1006,5 @@ tr:last-child td {
   .stats-row {
     grid-template-columns: 1fr;
     display: grid;
-  }
-
-  table,
-  thead,
-  tbody,
-  th,
-  td,
-  tr {
-    display: block;
-  }
-
-  thead {
-    display: none;
-  }
-
-  tr {
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  td {
-    border-bottom: none;
-    padding: 8px 0;
-    font-size: 1rem;
-  }
-
-  td::before {
-    content: attr(data-label);
-    display: block;
-    font-size: 0.72rem;
-    color: rgba(255, 255, 255, 0.62);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 6px;
   }
 }
