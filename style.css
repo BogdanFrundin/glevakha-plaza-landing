@@ -969,7 +969,19 @@ tr:last-child td {
   }
 
   .hero-card {
-    display: none;
+    margin-top: 20px;
+    padding: 22px 18px 18px;
+  }
+
+  .hero-card h2 {
+    font-size: 1.7rem;
+    margin: 16px 0 10px;
+  }
+
+  .mini-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 20px;
   }
 
   .hero-metrics {
