@@ -47,7 +47,9 @@ const revealObserver = new IntersectionObserver(
 revealItems.forEach((item) => revealObserver.observe(item));
 
 if (form && status) {
-  form.addEventListener('submit', (event) => {
+  const submitButton = form.querySelector('button[type="submit"]');
+
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const formData = new FormData(form);
@@ -63,10 +65,30 @@ if (form && status) {
       return;
     }
 
-    console.log('Нова заявка Glevakha Plaza:', payload);
+    if (submitButton) submitButton.disabled = true;
+    status.textContent = 'Надсилаємо заявку…';
+    status.style.color = '#7d756c';
 
-    status.textContent = `Дякуємо, ${name}! Ми зв’яжемося з вами найближчим часом.`;
-    status.style.color = '#1e5d3d';
-    form.reset();
+    try {
+      const response = await fetch('/api/send-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone, comment }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Request failed');
+      }
+
+      status.textContent = 'Дякуємо, заявку прийнято! Ми зв’яжемося з вами найближчим часом.';
+      status.style.color = '#1e5d3d';
+      form.reset();
+    } catch (error) {
+      console.error('Не вдалося надіслати заявку:', error);
+      status.textContent = 'Щось пішло не так. Спробуйте ще раз або зателефонуйте нам напряму.';
+      status.style.color = '#8a2d2d';
+    } finally {
+      if (submitButton) submitButton.disabled = false;
+    }
   });
 }
